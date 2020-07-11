@@ -20,14 +20,20 @@ namespace CRUD
         private void btnGuardar_Click(object sender, EventArgs e)
         {
             TIC.DatosPersona persona = new TIC.DatosPersona();
-            persona.Cedula = "01929951";
-            persona.Apellidos = "Calderon Lujano";
-            persona.Nombres = "Carlos Daniel";
-            persona.Sexo = "M";
-            persona.FechaNacimiento = DateTime.Now.Date;
-            persona.Correo = "cdcl200127@gmail.com";
-            persona.Estatura = 165;
-            persona.Peso = 78.45m;
+            persona.Cedula = this.txtCedula.Text;
+            persona.Apellidos = this.txtApellidos.Text;
+            persona.Nombres = this.txtNombres.Text;
+            persona.FechaNacimiento = this.dtFechaNacimiento.Value;
+            persona.Correo = this.txtCorreo.Text;
+            persona.Estatura = Int32.Parse(this.txtEstatura.Text);
+            persona.Peso = Decimal.Parse(this.txtPeso.Text);
+            string genero = "F";
+            if (this.cmbSexo.Text.ToString().Equals("Masculino"))
+            {
+                genero = "M";
+            }
+            persona.Sexo = genero;
+
             int x = TIC.DatosPersonasDAO.crear(persona);
             if (x > 0)
                 MessageBox.Show("Registro agregado.....");
