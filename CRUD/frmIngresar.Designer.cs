@@ -130,6 +130,8 @@
             this.txtCedula.Name = "txtCedula";
             this.txtCedula.Size = new System.Drawing.Size(141, 20);
             this.txtCedula.TabIndex = 8;
+            this.txtCedula.TextChanged += new System.EventHandler(this.txtCedula_TextChanged);
+            this.txtCedula.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCedula_KeyPress);
             // 
             // txtApellidos
             // 
@@ -138,6 +140,8 @@
             this.txtApellidos.Name = "txtApellidos";
             this.txtApellidos.Size = new System.Drawing.Size(274, 20);
             this.txtApellidos.TabIndex = 9;
+            this.txtApellidos.TextChanged += new System.EventHandler(this.txtApellidos_TextChanged);
+            this.txtApellidos.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtApellidos_KeyPress);
             // 
             // txtNombres
             // 
@@ -146,6 +150,7 @@
             this.txtNombres.Name = "txtNombres";
             this.txtNombres.Size = new System.Drawing.Size(274, 20);
             this.txtNombres.TabIndex = 10;
+            this.txtNombres.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNombres_KeyPress);
             // 
             // cmbSexo
             // 
@@ -181,6 +186,7 @@
             this.txtEstatura.Name = "txtEstatura";
             this.txtEstatura.Size = new System.Drawing.Size(100, 20);
             this.txtEstatura.TabIndex = 14;
+            this.txtEstatura.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtEstatura_KeyPress);
             // 
             // txtPeso
             // 
@@ -189,6 +195,7 @@
             this.txtPeso.Name = "txtPeso";
             this.txtPeso.Size = new System.Drawing.Size(100, 20);
             this.txtPeso.TabIndex = 15;
+            this.txtPeso.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPeso_KeyPress);
             // 
             // btnGuardar
             // 
@@ -208,6 +215,7 @@
             this.btnNuevo.TabIndex = 16;
             this.btnNuevo.Text = "NUEVO";
             this.btnNuevo.UseVisualStyleBackColor = true;
+            this.btnNuevo.Click += new System.EventHandler(this.btnNuevo_Click);
             // 
             // btnCerrar
             // 
@@ -217,6 +225,7 @@
             this.btnCerrar.TabIndex = 16;
             this.btnCerrar.Text = "CERRAR";
             this.btnCerrar.UseVisualStyleBackColor = true;
+            this.btnCerrar.Click += new System.EventHandler(this.btnCerrar_Click);
             // 
             // dgPersonas
             // 
