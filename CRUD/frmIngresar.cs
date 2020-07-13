@@ -16,7 +16,7 @@ namespace CRUD
         public frmIngresar()
         {
             InitializeComponent();
-            
+
         }
         public static bool ComprobarFormatoEmail(string seMailAComprobar)
         {
@@ -68,14 +68,32 @@ namespace CRUD
                     this.txtCorreo.Text = "";
                 }
                 else
-                {                 
-                    int x = TIC.DatosPersonasDAO.crear(persona);
-                    if (x > 0)
-                        MessageBox.Show("Registro agregado exitosamente.....");
-                    else
-                        MessageBox.Show("No se pudo agregar el registro...");
+                {
+                    int x = 0;
+                    try
+                    {
+                        //si existe cedula
+                        if (TIC.DatosPersonasDAO.existeCedula(this.txtCedula.Text)){
+                            MessageBox.Show("La cedula ya existe...");
+                            return;
+                        }
+                        //Agregar datos a BDD
+                        x = TIC.DatosPersonasDAO.crear(persona);
+                        if (x > 0)
+                            MessageBox.Show("Registro agregado exitosamente.....");
+                        else
+                            MessageBox.Show("No se pudo agregar el registro...");
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message.ToString());
+                    }
+                    finally
+                    {
+                        this.cargarGridPersonas();
+                    }
                 }
-                   
+
             }
         }
 
@@ -159,5 +177,17 @@ namespace CRUD
             // solo 1 punto decimal
             if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1)) ;
         }
+
+        private void frmIngresar_Load(object sender, EventArgs e)
+        {
+            this.cargarGridPersonas();
+        }
+        private void cargarGridPersonas()
+        {
+            DataTable dt = TIC.DatosPersonasDAO.getAll();
+            this.dgPersonas.DataSource = dt;
+        }
+
+       
     }
 }

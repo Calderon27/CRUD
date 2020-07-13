@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -9,11 +10,12 @@ namespace TIC
 {
     public static class DatosPersonasDAO
     {
+        private static String cadenaConexion= @"server=PC1\SQLEXPRESS2016; database= TI2020; Integrated Security=true";
         public static int crear(DatosPersona datosPersonas)
         {
             //1. configurar la conexión con una fuente de datos
             //string cadenaConexion = @"server=A-SIS-0KP\SQLEXPRESS2016; database= TI2020; user id=sa; password=isa";
-            string cadenaConexion = @"server=PC1\SQLEXPRESS2016; database= TI2020; Integrated Security=true";
+            //string cadenaConexion = @"server=PC1\SQLEXPRESS2016; database= TI2020; Integrated Security=true";
             //definir un objeto tipo conexión
             SqlConnection conn = new SqlConnection(cadenaConexion);
 
@@ -43,5 +45,57 @@ namespace TIC
 
             return x;
         }
+        /// <summary>
+        /// Mostrar todos los datos en la tabla DataGridView
+        /// </summary>
+        /// <returns></returns>
+        public static DataTable getAll()
+        {
+            SqlConnection conn = new SqlConnection(cadenaConexion);
+            //1.definir y configurar conexion
+            string sql = "select cedula,apellidos+' '+nombres [Nombre Completo],sexo," +
+                "fechaNacimiento, correo, estaturacm " +
+                "from DatosPersonas " +
+                "order by apellidos, nombres";
+            //definir un adaptador de datos: es un puente que permite pasar los datos de nuestra BDD, hacia
+            //el datatable
+            SqlDataAdapter ad = new SqlDataAdapter(sql, conn);
+            //3. recuperamos los datos
+            DataTable dt = new DataTable();
+            ad.Fill(dt);
+            return dt;
+        }
+        /// <summary>
+        /// codigo boolean si existe cedula
+        /// </summary>
+        /// <param name="scedula"></param>
+        /// <returns></returns>
+        public static Boolean existeCedula(String scedula)
+        {
+            SqlConnection conn = new SqlConnection(cadenaConexion);
+            //1.definir y configurar conexion
+            string sql = "select cedula " +
+                "from DatosPersonas " +
+                "where cedula=@cedula";
+            //definir un adaptador de datos: es un puente que permite pasar los datos de nuestra BDD, hacia
+            //el datatable
+            SqlDataAdapter ad = new SqlDataAdapter(sql, conn);
+            ad.SelectCommand.Parameters.AddWithValue("@cedula", scedula);
+
+            //3. recuperamos los datos
+            DataTable dt = new DataTable();
+            ad.Fill(dt);
+            Boolean existe = false;//si existe filas
+            if (dt.Rows.Count > 0)
+                existe = true;
+
+            return existe;
+        }
+       /*public static int delete(String cedula)
+        {
+            //1) crear metodo borrado usando como guia el metodo crear 
+            
+        }*/
+
     }
 }

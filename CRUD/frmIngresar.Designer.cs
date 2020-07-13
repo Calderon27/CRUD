@@ -268,6 +268,7 @@
             this.Controls.Add(this.label1);
             this.Name = "frmIngresar";
             this.Text = "Registro de datos personales";
+            this.Load += new System.EventHandler(this.frmIngresar_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgPersonas)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
