@@ -48,6 +48,7 @@
             this.btnNuevo = new System.Windows.Forms.Button();
             this.btnCerrar = new System.Windows.Forms.Button();
             this.dgPersonas = new System.Windows.Forms.DataGridView();
+            this.btnDelete = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgPersonas)).BeginInit();
             this.SuspendLayout();
             // 
@@ -241,11 +242,22 @@
             this.dgPersonas.Size = new System.Drawing.Size(927, 166);
             this.dgPersonas.TabIndex = 17;
             // 
+            // btnDelete
+            // 
+            this.btnDelete.Location = new System.Drawing.Point(620, 33);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(104, 36);
+            this.btnDelete.TabIndex = 18;
+            this.btnDelete.Text = "BORRAR";
+            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
             // frmIngresar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(971, 528);
+            this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.dgPersonas);
             this.Controls.Add(this.btnCerrar);
             this.Controls.Add(this.btnNuevo);
@@ -297,5 +309,6 @@
         private System.Windows.Forms.Button btnNuevo;
         private System.Windows.Forms.Button btnCerrar;
         private System.Windows.Forms.DataGridView dgPersonas;
+        private System.Windows.Forms.Button btnDelete;
     }
 }

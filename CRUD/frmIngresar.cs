@@ -188,6 +188,20 @@ namespace CRUD
             this.dgPersonas.DataSource = dt;
         }
 
-       
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("¿Estas seguro de eliminar registro de este estudiante?"
+                , "eliminar registro", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+            {
+                int x = TIC.DatosPersonasDAO.delete(this.txtCedula.Text.ToString());
+                this.txtApellidos.Clear();
+                this.txtNombres.Clear();
+                this.cmbSexo.Items.Clear();
+                this.dtFechaNacimiento.
+
+            }
+            MessageBox.Show("Registro eliminado exitosamente ......");
+        }
+    }
     }
 }

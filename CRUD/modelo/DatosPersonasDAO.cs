@@ -11,6 +11,11 @@ namespace TIC
     public static class DatosPersonasDAO
     {
         private static String cadenaConexion= @"server=PC1\SQLEXPRESS2016; database= TI2020; Integrated Security=true";
+        /// <summary>
+        /// Crear y guardar datos personales
+        /// </summary>
+        /// <param name="datosPersonas"></param>
+        /// <returns></returns>
         public static int crear(DatosPersona datosPersonas)
         {
             //1. configurar la conexión con una fuente de datos
@@ -91,11 +96,23 @@ namespace TIC
 
             return existe;
         }
-       /*public static int delete(String cedula)
+        public static int delete(String cedula)
         {
-            //1) crear metodo borrado usando como guia el metodo crear 
-            
-        }*/
+            SqlConnection conn = new SqlConnection(cadenaConexion);
+
+            string sql = "delete from DatosPersonas " +
+                "where cedula=@cedula";
+            SqlCommand comando = new SqlCommand(sql, conn);
+            //vonfiguramos los parametros
+
+            comando.CommandType = System.Data.CommandType.Text;
+            comando.Parameters.AddWithValue("@cedula", cedula);
+            conn.Open();
+            int x = comando.ExecuteNonQuery(); //ejecutamos el comando
+            conn.Close();
+            return x;
+
+        }
 
     }
 }
